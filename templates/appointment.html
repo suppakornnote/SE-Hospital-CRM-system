@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment - Hospital CRM System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #002147;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #000000;
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        select, input[type="text"], input[type="datetime-local"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #002147;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .appointment-card {
+            display: none; /* Hidden initially */
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #e8f5e9;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .appointment-card h3 {
+            margin-top: 0;
+        }
+        .cancel-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #e53935; /* Red color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .cancel-button:hover {
+            background-color: #d32f2f;
+        }
+        /* New Appointment Manage Button */
+        .manage-appointments-button {
+            display: none; /* Hidden initially */
+            width: 200px;
+            padding: 10px;
+            background-color: #002147;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+        .manage-appointments-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Hospital CRM System</h1>
+        <p>A comprehensive system for hospital management</p>
+    </header>
+
+    <div class="container">
+        <h2>Book Appointment</h2>
+        <form id="appointmentForm">
+            <p id="usernameDisplay"></p>
+            <label for="doctor">Select Doctor</label>
+            <select id="doctor" required>
+                <option value="">Select Doctor</option>
+                <option value="Dr. John">Dr. John (Cardiology)</option>
+                <option value="Dr. Jane">Dr. Jane (Neurology)</option>
+                <option value="Dr. Mike">Dr. Mike (Orthopedics)</option>
+                <option value="Dr. Alice">Dr. Alice (General Practitioner)</option>
+            </select>
+
+            <label for="dateTime">Appointment Time</label>
+            <input type="datetime-local" id="dateTime" required>
+
+            <button type="submit">Book Appointment</button>
+        </form>
+        <!-- Cancel Button -->
+        <button class="cancel-button" id="cancelButton" onclick="window.location.href='Appointment_manage.html'">Cancel</button>
+        
+        <p id="confirmationMessage"></p>
+        <!-- Appointment Card -->
+        <div class="appointment-card" id="appointmentCard">
+            <h3>Appointment Details</h3>
+            <p><strong>Doctor:</strong> <span id="cardDoctor"></span></p>
+            <p><strong>Date & Time:</strong> <span id="cardDateTime"></span></p>
+        </div>
+        
+        <!-- New Appointment Manage Button -->
+        <button class="manage-appointments-button" id="manageAppointmentsButton" onclick="window.location.href='Appointment_manage.html'">
+            Go to Appointment Manage
+        </button>
+
+    </div>
+<!-- 
+    <script>
+        // Get the username from the URL query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username');
+        document.getElementById("usernameDisplay").textContent = "Logged in as: " + username;
+
+        // Handle the appointment form submission
+        document.getElementById("appointmentForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const doctor = document.getElementById("doctor").value;
+            const dateTime = document.getElementById("dateTime").value;
+
+            if (doctor && dateTime) {
+                document.getElementById("confirmationMessage").textContent = `Appointment with ${doctor} confirmed for ${dateTime}.`;
+                
+                // Display the appointment card
+                document.getElementById("cardDoctor").textContent = doctor;
+                document.getElementById("cardDateTime").textContent = dateTime;
+                document.getElementById("appointmentCard").style.display = "block";
+                
+                // Hide the cancel button after booking the appointment
+                document.getElementById("cancelButton").style.display = "none";
+                
+                // Show the 'Go to Appointment Manage' button after the appointment is booked
+                document.getElementById("manageAppointmentsButton").style.display = "inline-block";
+            } else {
+                document.getElementById("confirmationMessage").textContent = "Please select a doctor and appointment time.";
+            }
+        });
+    </script> -->
+
+    <script>
+        // Get the username from the URL query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username');
+        document.getElementById("usernameDisplay").textContent = "Logged in as: " + username;
+    
+        // Handle the appointment form submission
+        document.getElementById("appointmentForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+    
+            const doctor = document.getElementById("doctor").value;
+            const dateTime = document.getElementById("dateTime").value;
+    
+            if (doctor && dateTime) {
+                // Get existing appointments or create an empty array
+                let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+    
+                // Add new appointment to the array
+                appointments.push({
+                    username: username,
+                    doctorName: doctor,
+                    dateTime: dateTime
+                });
+    
+                // Save updated appointments array to local storage
+                localStorage.setItem("appointments", JSON.stringify(appointments));
+    
+                // Display confirmation message
+                document.getElementById("confirmationMessage").textContent = `Appointment with ${doctor} confirmed for ${dateTime}.`;
+                
+                // Display the appointment card
+                document.getElementById("cardDoctor").textContent = doctor;
+                document.getElementById("cardDateTime").textContent = dateTime;
+                document.getElementById("appointmentCard").style.display = "block";
+    
+                // Hide the cancel button and show manage appointments button
+                document.getElementById("cancelButton").style.display = "none";
+                document.getElementById("manageAppointmentsButton").style.display = "inline-block";
+            } else {
+                document.getElementById("confirmationMessage").textContent = "Please select a doctor and appointment time.";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration</title>
+    <style>
+        /* Styling as before */
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Register as a Patient</h2>
+        <form id="registerForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="phone" placeholder="Phone Number" required>
+            <button type="submit">Register</button>
+        </form>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        // Handle patient registration (for demo purposes, just show success message)
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            
+            // Simulate saving registration data
+            localStorage.setItem("patient", JSON.stringify({ username, password, email, phone }));
+            document.getElementById("message").textContent = "Registration successful! You can now log in.";
+        });
+    </script>
+
+</body>
+</html>

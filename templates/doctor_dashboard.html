@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <style>
+        /* Styling as before */
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Welcome, Dr. <span id="doctorName"></span></h2>
+        <p><a href="manage_appointments.html">Manage Appointments</a></p>
+        <p><a href="view_patient_history.html">View Patient History</a></p>
+        <p><a href="update_medical_record.html">Update Medical Record</a></p>
+        <p><a href="issue_prescription.html">Issue Prescription</a></p>
+    </div>
+
+    <script>
+        // Simulate doctor login
+        const doctor = { username: "doctor1" };
+        document.getElementById("doctorName").textContent = doctor.username;
+    </script>
+
+</body>
+</html>
