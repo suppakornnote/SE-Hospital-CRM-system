@@ -172,9 +172,8 @@
         <div class="edit-form" id="editForm">
             <h3>Edit Appointment</h3>
             <form id="editAppointmentForm">
-                <label for="editUsername">Username</label>
-                <input type="text" id="editUsername" required>
-                
+
+
                 <label for="editDoctorName">Doctor Name</label>
                 <select id="editDoctorName" required>
                     <option value="Dr. John">Dr. John (Cardiology)</option>
@@ -182,13 +181,13 @@
                     <option value="Dr. Mike">Dr. Mike (Orthopedics)</option>
                     <option value="Dr. Alice">Dr. Alice (General Practitioner)</option>
                 </select>
-
+        
                 <label for="editDate">Date</label>
                 <input type="date" id="editDate" required>
                 
                 <label for="editTime">Time</label>
                 <input type="time" id="editTime" required>
-
+        
                 <button type="submit" class="btn">Save Changes</button>
                 <button type="button" class="btn" onclick="cancelEdit()">Cancel</button>
             </form>
@@ -242,6 +241,7 @@
                     <td>${appointment.doctorName}</td>
                     <td>${date}</td>
                     <td>${time}</td>
+                    <td>${appointment.reason || 'General Consultation'}</td> 
                     <td>
                         <button class="btn" onclick="editAppointment(${index})">Edit</button>
                         <button class="btn" onclick="deleteAppointment(${index})">Delete</button>
@@ -255,7 +255,7 @@
             const appointment = appointments[index];
 
             // Set form values
-            document.getElementById("editUsername").value = appointment.username;
+
             document.getElementById("editDoctorName").value = appointment.doctorName;
             document.getElementById("editDate").value = appointment.dateTime.split("T")[0];
             document.getElementById("editTime").value = appointment.dateTime.split("T")[1];
@@ -273,7 +273,7 @@
             const appointment = appointments[editIndex];
 
             // Update appointment details
-            appointment.username = document.getElementById("editUsername").value;
+            
             appointment.doctorName = document.getElementById("editDoctorName").value;
             appointment.dateTime = `${document.getElementById("editDate").value}T${document.getElementById("editTime").value}`;
 
