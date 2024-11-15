@@ -13,6 +13,9 @@
             margin: 0;
             padding: 0;
             color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         header {
@@ -50,13 +53,19 @@
             border-collapse: collapse;
             margin-top: 20px;
         }
-        table, th, td {
+
+        table,
+        th,
+        td {
             border: 1px solid #ddd;
         }
-        th, td {
+
+        th,
+        td {
             padding: 12px;
             text-align: left;
         }
+
         th {
             background-color: #002147;
             color: white;
@@ -77,21 +86,26 @@
         .form-container {
             margin-top: 20px;
         }
-        .form-container input, .form-container select {
+
+        .form-container input,
+        .form-container select {
             padding: 10px;
             margin-right: 10px;
             width: 200px;
             display: block;
             margin-bottom: 10px;
         }
+
         .edit-form {
-            display: none; /* Hide the edit form initially */
+            display: none;
+            /* Hide the edit form initially */
             padding: 20px;
             background-color: #e8f5e9;
             border: 1px solid #ddd;
             border-radius: 5px;
             margin-top: 20px;
         }
+
         /* Logged-in As Display */
         #loggedInAs {
             font-size: 1rem;
@@ -102,6 +116,7 @@
             font-weight: bold;
             font-style: italic;
         }
+
         .footer {
             text-align: center;
             padding: 20px;
@@ -181,13 +196,16 @@
                     <option value="Dr. Mike">Dr. Mike (Orthopedics)</option>
                     <option value="Dr. Alice">Dr. Alice (General Practitioner)</option>
                 </select>
-        
+
                 <label for="editDate">Date</label>
                 <input type="date" id="editDate" required>
-                
+
                 <label for="editTime">Time</label>
                 <input type="time" id="editTime" required>
-        
+
+                <label for="editReason">Reason</label>
+                <input type="text" id="editReason" required>
+
                 <button type="submit" class="btn">Save Changes</button>
                 <button type="button" class="btn" onclick="cancelEdit()">Cancel</button>
             </form>
@@ -198,8 +216,8 @@
     <div class="footer">
         <p>© 2024 Hospital CRM System. All rights reserved.</p>
         <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.facebook.com/NuntapopZ"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/__noteee/"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-linkedin-in"></i></a>
         </div>
     </div>
@@ -259,6 +277,7 @@
             document.getElementById("editDoctorName").value = appointment.doctorName;
             document.getElementById("editDate").value = appointment.dateTime.split("T")[0];
             document.getElementById("editTime").value = appointment.dateTime.split("T")[1];
+            document.getElementById("editReason").value = appointment.reason;
 
             // Show the edit form
             document.getElementById("editForm").style.display = "block";
@@ -266,16 +285,17 @@
         }
 
         // Handle form submission to save changes
-        document.getElementById("editAppointmentForm").addEventListener("submit", function(event) {
+        document.getElementById("editAppointmentForm").addEventListener("submit", function (event) {
             event.preventDefault();
 
             const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
             const appointment = appointments[editIndex];
 
             // Update appointment details
-            
+
             appointment.doctorName = document.getElementById("editDoctorName").value;
             appointment.dateTime = `${document.getElementById("editDate").value}T${document.getElementById("editTime").value}`;
+            appointment.reason = document.getElementById("editReason").value; // Update reason
 
             // Save the updated appointments back to localStorage
             localStorage.setItem("appointments", JSON.stringify(appointments));

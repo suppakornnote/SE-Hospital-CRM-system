@@ -141,7 +141,8 @@
 
             <label for="dateTime">Appointment Time</label>
             <input type="datetime-local" id="dateTime" required>
-
+            <label for="reason">Reason</label>
+            <input type="text" id="reason" required>
             <button type="submit">Book Appointment</button>
         </form>
         <!-- Cancel Button -->
@@ -161,38 +162,7 @@
         </button>
 
     </div>
-<!-- 
-    <script>
-        // Get the username from the URL query parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const username = urlParams.get('username');
-        document.getElementById("usernameDisplay").textContent = "Logged in as: " + username;
 
-        // Handle the appointment form submission
-        document.getElementById("appointmentForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            const doctor = document.getElementById("doctor").value;
-            const dateTime = document.getElementById("dateTime").value;
-
-            if (doctor && dateTime) {
-                document.getElementById("confirmationMessage").textContent = `Appointment with ${doctor} confirmed for ${dateTime}.`;
-                
-                // Display the appointment card
-                document.getElementById("cardDoctor").textContent = doctor;
-                document.getElementById("cardDateTime").textContent = dateTime;
-                document.getElementById("appointmentCard").style.display = "block";
-                
-                // Hide the cancel button after booking the appointment
-                document.getElementById("cancelButton").style.display = "none";
-                
-                // Show the 'Go to Appointment Manage' button after the appointment is booked
-                document.getElementById("manageAppointmentsButton").style.display = "inline-block";
-            } else {
-                document.getElementById("confirmationMessage").textContent = "Please select a doctor and appointment time.";
-            }
-        });
-    </script> -->
 
     <script>
         // Get the username from the URL query parameter
@@ -202,40 +172,36 @@
     
         // Handle the appointment form submission
         document.getElementById("appointmentForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-    
-            const doctor = document.getElementById("doctor").value;
-            const dateTime = document.getElementById("dateTime").value;
-    
-            if (doctor && dateTime) {
-                // Get existing appointments or create an empty array
-                let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
-    
-                // Add new appointment to the array
-                appointments.push({
-                    username: username,
-                    doctorName: doctor,
-                    dateTime: dateTime
-                });
-    
-                // Save updated appointments array to local storage
-                localStorage.setItem("appointments", JSON.stringify(appointments));
-    
-                // Display confirmation message
-                document.getElementById("confirmationMessage").textContent = `Appointment with ${doctor} confirmed for ${dateTime}.`;
-                
-                // Display the appointment card
-                document.getElementById("cardDoctor").textContent = doctor;
-                document.getElementById("cardDateTime").textContent = dateTime;
-                document.getElementById("appointmentCard").style.display = "block";
-    
-                // Hide the cancel button and show manage appointments button
-                document.getElementById("cancelButton").style.display = "none";
-                document.getElementById("manageAppointmentsButton").style.display = "inline-block";
-            } else {
-                document.getElementById("confirmationMessage").textContent = "Please select a doctor and appointment time.";
-            }
-        });
+        event.preventDefault();
+
+        const doctor = document.getElementById("doctor").value;
+        const dateTime = document.getElementById("dateTime").value;
+        const reason = document.getElementById("reason").value;
+
+        if (doctor && dateTime && reason) {
+            let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+
+            appointments.push({
+                username: username,
+                doctorName: doctor,
+                dateTime: dateTime,
+                reason: reason
+            });
+
+            localStorage.setItem("appointments", JSON.stringify(appointments));
+
+            document.getElementById("confirmationMessage").textContent = `Appointment with ${doctor} confirmed for ${dateTime}.`;
+            
+            document.getElementById("cardDoctor").textContent = doctor;
+            document.getElementById("cardDateTime").textContent = dateTime;
+            document.getElementById("appointmentCard").style.display = "block";
+
+            document.getElementById("cancelButton").style.display = "none";
+            document.getElementById("manageAppointmentsButton").style.display = "inline-block";
+        } else {
+            document.getElementById("confirmationMessage").textContent = "Please select a doctor, appointment time, and reason.";
+        }
+    });
     </script>
 </body>
 </html>
