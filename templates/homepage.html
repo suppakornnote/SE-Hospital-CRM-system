@@ -28,31 +28,75 @@
         header {
             background-color: #002147;
             color: white;
-            padding: 20px;
+            padding: 30px 20px;
             text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Styling for the main heading */
+        header h1 {
+            font-size: 3.5rem;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffcc00;
+        }
+
+        /* Styling for the subtitle */
+        header h4 {
+            font-size: 1.6rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        /* Add a soft fade-in effect to the header */
+        header {
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+         /* Navigation Menu Styling */
+         nav {
+            background-color: #c4a300;
+            /* overflow: hidden; */
+            position: relative;
+            width: 100%;
+            z-index: 10;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* Navigation Menu Styling */
-        nav {
-            background-color: #c4a300;
-            overflow: hidden;
-        }
-
-        nav a,
-        .dropdown-btn {
+        nav a {
             float: left;
             display: block;
             color: white;
             text-align: center;
             padding: 14px 20px;
             text-decoration: none;
+            font-size: 1.1rem;
             transition: background-color 0.3s, color 0.3s;
         }
 
-        nav a:hover,
-        .dropdown-btn:hover {
+        nav a:hover {
             background-color: #335980;
+            color: white;
+        }
+
+        nav::after {
+            content: "";
+            clear: both;
+            display: table;
         }
 
         /* Dropdown */
@@ -171,23 +215,13 @@
     <!-- Header Section -->
     <header>
         <h1>Hospital CRM System</h1>
-        <p>A comprehensive system for hospital management</p>
+        <h4>A comprehensive system for hospital management</h4>
     </header>
 
     <!-- Navigation Menu -->
     <nav>
         <a href="homepage.html">Home</a>
-        <a href="patients.html">Patients</a>
-        <a href="doctors.html">Doctors</a>
-        <a href="appointments.html">Appointments</a>
-        <div class="dropdown">
-            <span class="dropdown-btn">More <i class="fas fa-caret-down"></i></span>
-            <div class="dropdown-content">
-                <a href="reports.html">Reports</a>
-                <a href="settings.html">Settings</a>
-                <a href="contact.html">Contact</a>
-            </div>
-        </div>
+        <a href="teampage.html">Our Team</a>
     </nav>
 
     <!-- Main Container -->
